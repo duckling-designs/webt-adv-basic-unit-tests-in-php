@@ -1,4 +1,5 @@
 <?php
+namespace DucklingDesigns\WebtAdvBasicUnitTestsInPhp;
 
 class VideoGameOst implements \JsonSerializable {
     private int $ID;

@@ -1,5 +1,7 @@
 <?php
 
+namespace DucklingDesigns\WebtAdvBasicUnitTestsInPhp;
+
 class Seeder
 {
     public static function getOSTs(): array

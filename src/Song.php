@@ -1,4 +1,5 @@
 <?php
+namespace DucklingDesigns\WebtAdvBasicUnitTestsInPhp;
 
 class Song implements \JsonSerializable {
     private int $ID;
