@@ -6,15 +6,21 @@ use PHPUnit\Framework\TestCase;
 class SongTest extends TestCase
 {
     private ?Song $testSong;
-    private int $ID = 1;
-    private string $name = 'Test Song';
-    private string $artist = 'Test Artist';
-    private int $trackNumber = 1;
-    private string $duration = '3:30';
+    private int $ID;
+    private string $name;
+    private string $artist;
+    private int $trackNumber;
+    private string $duration;
 
     protected function setUp(): void
     {
-        parent::setUp();;
+        parent::setUp();
+
+        $this->ID = 1;
+        $this->name = 'Test Song';
+        $this->artist = 'Test Artist';
+        $this->trackNumber = 1;
+        $this->duration = '3:30';
         $this->testSong = new Song($this->ID, $this->name, $this->artist, $this->trackNumber, $this->duration);
     }
 

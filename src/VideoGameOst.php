@@ -1,7 +1,9 @@
 <?php
+
 namespace DucklingDesigns\WebtAdvBasicUnitTestsInPhp;
 
-class VideoGameOst implements \JsonSerializable {
+class VideoGameOst implements \JsonSerializable
+{
     private int $ID;
     private string $name;
     private string $videogameName;
@@ -50,12 +52,14 @@ class VideoGameOst implements \JsonSerializable {
         $this->trackList = $trackList;
     }
 
-    public function jsonSerialize(): array {
-        return array (
+    public function jsonSerialize(): array
+    {
+        return array(
             'ID' => $this->ID,
             'name' => $this->name,
             'videogameName' => $this->videogameName,
             'releaseYear' => $this->releaseYear,
             'trackList' => $this->trackList
-        );    }
+        );
+    }
 }

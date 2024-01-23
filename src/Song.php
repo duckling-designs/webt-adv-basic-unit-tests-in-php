@@ -38,7 +38,7 @@ class Song implements \JsonSerializable {
      * @param string $name
      * @param string $artist
      * @param int $trackNumber
-     * @param int $duration
+     * @param string $duration
      */
     public function __construct(int $ID, string $name, string $artist, int $trackNumber, string $duration)
     {
