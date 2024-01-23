@@ -5,41 +5,39 @@ use PHPUnit\Framework\TestCase;
 
 class SongTest extends TestCase
 {
+    private ?Song $testSong;
+    private int $ID = 1;
+    private string $name = 'Test Song';
+    private string $artist = 'Test Artist';
+    private int $trackNumber = 1;
+    private string $duration = '3:30';
+
+    protected function setUp(): void
+    {
+        parent::setUp();;
+        $this->testSong = new Song($this->ID, $this->name, $this->artist, $this->trackNumber, $this->duration);
+    }
+
     public function testConstructor()
     {
-        $ID = 1;
-        $name = 'Test Song';
-        $artist = 'Test Artist';
-        $trackNumber = 1;
-        $duration = '3:30';
-
-        $song = new Song($ID, $name, $artist, $trackNumber, $duration);
-
-        $this->assertEquals($ID, $song->getID());
-        $this->assertEquals($name, $song->getName());
-        $this->assertEquals($artist, $song->getArtist());
-        $this->assertEquals($trackNumber, $song->getTrackNumber());
-        $this->assertEquals($duration, $song->getDuration());
+        $this->assertInstanceOf(Song::class, $this->testSong);
+        $this->assertEquals($this->ID, $this->testSong->getID());
+        $this->assertEquals($this->name, $this->testSong->getName());
+        $this->assertEquals($this->artist, $this->testSong->getArtist());
+        $this->assertEquals($this->trackNumber, $this->testSong->getTrackNumber());
+        $this->assertEquals($this->duration, $this->testSong->getDuration());
     }
 
     public function testJsonSerialize()
     {
-        $ID = 1;
-        $name = 'Test Song';
-        $artist = 'Test Artist';
-        $trackNumber = 1;
-        $duration = '3:30';
-
-        $song = new Song($ID, $name, $artist, $trackNumber, $duration);
-
         $expectedJson = json_encode([
-            'ID' => $ID,
-            'name' => $name,
-            'artist' => $artist,
-            'trackNumber' => $trackNumber,
-            'duration' => $duration,
+            'ID' => $this->ID,
+            'name' => $this->name,
+            'artist' => $this->artist,
+            'trackNumber' => $this->trackNumber,
+            'duration' => $this->duration
         ]);
 
-        $this->assertEquals($expectedJson, json_encode($song));
+        $this->assertEquals($expectedJson, json_encode($this->testSong));
     }
 }
