@@ -1,10 +1,12 @@
 <?php
-header('Content-Type: application/json');
-require_once 'vendor/autoload.php';
 
+namespace DucklingDesigns\WebtAdvBasicUnitTestsInPhp;
+
+require_once 'vendor/autoload.php';
 require 'src/Seeder.php';
-require 'src/VideoGameOst.php';
-require 'src/Song.php';
+
+header('Content-Type: application/json');
+
 
 $osts = Seeder::getOSTs();
 
