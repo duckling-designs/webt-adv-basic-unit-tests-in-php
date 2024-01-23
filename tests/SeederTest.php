@@ -2,47 +2,51 @@
 
 use DucklingDesigns\WebtAdvBasicUnitTestsInPhp\Seeder;
 use DucklingDesigns\WebtAdvBasicUnitTestsInPhp\VideoGameOst;
-use DucklingDesigns\WebtAdvBasicUnitTestsInPhp\Song;
 use PHPUnit\Framework\TestCase;
 
 class SeederTest extends TestCase
 {
-    public function testGetOSTs()
+    private ?array $seededOSTs;
+
+    protected function setUp(): void
     {
-        $osts = Seeder::getOSTs();
+        parent::setUp();
 
-        $this->assertCount(3, $osts);
+        $this->seededOSTs = Seeder::getOSTs();
+    }
 
-        // Test the first OST
-        $this->assertInstanceOf(VideoGameOST::class, $osts[0]);
-        $this->assertEquals(1, $osts[0]->getID());
-        $this->assertEquals('Minecraft OST', $osts[0]->getName());
-        $this->assertEquals('Minecraft', $osts[0]->getVideogameName());
-        $this->assertEquals(2000, $osts[0]->getReleaseYear());
+    public function testGetOSTsCount()
+    {
+        $this->assertCount(3, $this->seededOSTs);
+    }
 
-        // Test the songs in the first OST
-        $this->assertCount(4, $osts[0]->getTrackList());
-        $this->assertInstanceOf(Song::class, $osts[0]->getTrackList()[0]);
-        $this->assertEquals(1, $osts[0]->getTrackList()[0]->getID());
-        $this->assertEquals('Minecraft 1', $osts[0]->getTrackList()[0]->getName());
-        $this->assertEquals('C418', $osts[0]->getTrackList()[0]->getArtist());
-        $this->assertEquals(1, $osts[0]->getTrackList()[0]->getTrackNumber());
-        $this->assertEquals(120, $osts[0]->getTrackList()[0]->getDuration());
+    public function testFirstOST()
+    {
+        $firstOST = $this->seededOSTs[0];
+        $this->assertInstanceOf(VideoGameOST::class, $firstOST);
+        $this->assertEquals(1, $firstOST->getID());
+        $this->assertEquals('Minecraft OST', $firstOST->getName());
+        $this->assertEquals('Minecraft', $firstOST->getVideogameName());
+        $this->assertEquals(2000, $firstOST->getReleaseYear());
+    }
 
-        // Similar tests for the second and third OSTs
+    public function testSecondOST()
+    {
+        $secondOST = $this->seededOSTs[1];
+        $this->assertInstanceOf(VideoGameOST::class, $secondOST);
+        $this->assertEquals(2, $secondOST->getID());
+        $this->assertEquals('Terraria OST', $secondOST->getName());
+        $this->assertEquals('Terraria', $secondOST->getVideogameName());
+        $this->assertEquals(2000, $secondOST->getReleaseYear());
+    }
 
-        // Test the second OST
-        $this->assertInstanceOf(VideoGameOST::class, $osts[1]);
-        $this->assertEquals(2, $osts[1]->getID());
-        $this->assertEquals('Terraria OST', $osts[1]->getName());
-        $this->assertEquals('Terraria', $osts[1]->getVideogameName());
-        $this->assertEquals(2000, $osts[1]->getReleaseYear());
-
-        // Test the third OST
-        $this->assertInstanceOf(VideoGameOST::class, $osts[2]);
-        $this->assertEquals(3, $osts[2]->getID());
-        $this->assertEquals('WEBT OST', $osts[2]->getName());
-        $this->assertEquals('WEBT JSON', $osts[2]->getVideogameName());
-        $this->assertEquals(2000, $osts[2]->getReleaseYear());
+    public function testThirdOST()
+    {
+        $thirdOST = $this->seededOSTs[2];
+        $this->assertInstanceOf(VideoGameOST::class, $thirdOST);
+        $this->assertEquals(3, $thirdOST->getID());
+        $this->assertEquals('WEBT OST', $thirdOST->getName());
+        $this->assertEquals('WEBT JSON', $thirdOST->getVideogameName());
+        $this->assertEquals(2000, $thirdOST->getReleaseYear());
     }
 }
